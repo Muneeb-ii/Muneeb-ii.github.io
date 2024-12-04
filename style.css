@@ -1,0 +1,112 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header .header-content h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header .header-content p {
+    margin: 0.5rem 0;
+}
+
+header .social-links {
+    margin: 1rem 0;
+}
+
+header .social-links .icon {
+    margin: 0 0.5rem;
+    display: inline-block;
+}
+
+header .social-links img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+header .button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #0078d7;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+header .button:hover {
+    background-color: #0056a1;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+main section {
+    margin-bottom: 2rem;
+}
+
+/* Photo Section */
+.photo img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 3px solid #0078d7;
+}
+
+/* Section Titles */
+main section h2 {
+    font-size: 1.8rem;
+    color: #0078d7;
+    margin-bottom: 0.5rem;
+}
+
+/* Projects & News Lists */
+.projects ul, .news ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.projects li, .news li {
+    margin: 0.5rem 0;
+}
+
+.projects a {
+    color: #0078d7;
+    text-decoration: none;
+}
+
+.projects a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #222;
+    color: #fff;
+    font-size: 0.9rem;
+}
