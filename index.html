@@ -25,14 +25,13 @@
                 <li><a href="#skills" class="nav-link" id="nav-skills">Skills</a></li>
                 <li><a href="#education" class="nav-link" id="nav-education">Education</a></li>
                 <li><a href="#updates" class="nav-link" id="nav-updates">Updates</a></li>
-                <li><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li>
             </ul>
             <button id="themeToggle" aria-label="Toggle dark mode" class="theme-toggle">🌙</button>
         </nav>
         <div class="progress-bar" id="progressBar"></div>
     </header>
     <main>
-        <section class="photo" data-aos="zoom-in" id="about-me">
+        <section class="photo" data-aos="zoom-in" id="photo">
             <img src="assets/images/Picture.jpeg" alt="Muneeb Azfar Nafees">
         </section>
         
@@ -116,27 +115,45 @@
         <section class="projects" data-aos="fade-up" id="projects">
             <h2>Projects</h2>
             <ul>
-                <li data-aos="fade-right" data-aos-delay="100"><b>Sentiment Analysis Model</b><br>
-                    <i>Skills:</i> Python, NLP, Machine Learning<br>
-                    Developed a model trained on 40,000 IMDB reviews to accurately predict review sentiment, showcasing strong proficiency in NLP and data analysis.
+                <li data-aos="fade-right" data-aos-delay="400">
+                    <div class="proj-header">
+                        <span class="proj-title">PGFPlots Generator in Python</span>
+                        <span class="proj-date"><i>May 2025 – Present</i></span>
+                    </div>
+                    <div class="proj-skills">Skills: Python, LaTeX, Sympy</div>
+                    <div class="proj-desc">A lightweight Python utility that interactively generates fully commented TikZ/PGFPlots code from user-provided functions or coordinate lists.</div>
                 </li>
-                <li data-aos="fade-right" data-aos-delay="200"><b>Monte-Carlo Simulation: Blackjack</b><br>
-                    <i>Skills:</i> Java, Monte Carlo Simulation<br>
-                    Simulated thousands of hands to analyze optimal strategies in blackjack using Monte Carlo techniques.
+                <li data-aos="fade-right" data-aos-delay="500">
+                    <div class="proj-header">
+                        <span class="proj-title">Sudoku Solver in Java</span>
+                        <span class="proj-date"><i>Mar 2025 – May 2025</i></span>
+                    </div>
+                    <div class="proj-skills">Skills: Java, Algorithms, Backtracking</div>
+                    <div class="proj-desc">Developed a Java-based Sudoku solver for a Data Structures and Algorithms course. Implemented both a basic backtracking algorithm and an advanced MRV+Degree heuristic to efficiently solve 9x9 Sudoku puzzles. Validated performance and trade-offs through simulation experiments and robust testing.</div>
                 </li>
-                <li data-aos="fade-right" data-aos-delay="300"><b>Conway's Game of Life</b><br>
-                    <i>Skills:</i> Java, GUI Development (JFrame), Cellular Automata<br>
-                    Built an interactive simulation of Conway's Game of Life with GUI to visualize evolving cell patterns.
+                <li data-aos="fade-right" data-aos-delay="200">
+                    <div class="proj-header">
+                        <span class="proj-title">Monte-Carlo Simulation: Blackjack</span>
+                        <span class="proj-date"><i>Feb 2025 – Mar 2025</i></span>
+                    </div>
+                    <div class="proj-skills">Skills: Java, Monte Carlo Simulation</div>
+                    <div class="proj-desc">Simulated thousands of hands to analyze optimal strategies in blackjack using Monte Carlo techniques.</div>
                 </li>
-                <li data-aos="fade-right" data-aos-delay="400"><b>PGFPlots Generator in Python</b><br>
-                    <i>Skills:</i> Python, LaTeX, Sympy<br>
-                    <span style="font-size:0.98em; color:#888;">May 2025 – Present</span><br>
-                    A lightweight Python utility that interactively generates fully commented TikZ/PGFPlots code from user-provided functions or coordinate lists.
+                <li data-aos="fade-right" data-aos-delay="300">
+                    <div class="proj-header">
+                        <span class="proj-title">Conway's Game of Life</span>
+                        <span class="proj-date"><i>Feb 2025 – Mar 2025</i></span>
+                    </div>
+                    <div class="proj-skills">Skills: Java, GUI Development (JFrame), Cellular Automata</div>
+                    <div class="proj-desc">Built an interactive simulation of Conway's Game of Life with GUI to visualize evolving cell patterns.</div>
                 </li>
-                <li data-aos="fade-right" data-aos-delay="500"><b>Sudoku Solver in Java</b><br>
-                    <i>Skills:</i> Java, Algorithms, Backtracking<br>
-                    <span style="font-size:0.98em; color:#888;">Mar 2025 – May 2025</span><br>
-                    Developed a Java-based Sudoku solver for a Data Structures and Algorithms course. Implemented both a basic backtracking algorithm and an advanced MRV+Degree heuristic to efficiently solve 9x9 Sudoku puzzles. Validated performance and trade-offs through simulation experiments and robust testing.
+                <li data-aos="fade-right" data-aos-delay="100">
+                    <div class="proj-header">
+                        <span class="proj-title">Sentiment Analysis Model</span>
+                        <span class="proj-date"><i>Oct 2024 – Nov 2024</i></span>
+                    </div>
+                    <div class="proj-skills">Skills: Python, NLP, Machine Learning</div>
+                    <div class="proj-desc">Developed a model trained on 40,000 IMDB reviews to accurately predict review sentiment, showcasing strong proficiency in NLP and data analysis.</div>
                 </li>
             </ul>
         </section>
@@ -209,7 +226,7 @@
                     <img src="assets/images/leetcode-icon-430x512-6l72chsk.png" alt="LeetCode">
                 </a>
             </div>
-            <div class="footer-copyright">&copy; 2024 Muneeb Azfar Nafees</div>
+            <div class="footer-copyright">&copy; 2025 Muneeb Azfar Nafees</div>
         </footer>
     </main>
     <script src="assets/aos.js"></script>
@@ -236,6 +253,38 @@
         setTheme(saved === 'dark' || (!saved && prefersDark));
       })();
       themeToggle.onclick = () => setTheme(!document.body.classList.contains('dark-mode'));
+
+      // Intersection Observer for nav highlighting
+      const sectionNavMap = [
+        {id: 'about-me', nav: 'nav-about'},
+        {id: 'work-experience', nav: 'nav-experience'},
+        {id: 'projects', nav: 'nav-projects'},
+        {id: 'skills', nav: 'nav-skills'},
+        {id: 'education', nav: 'nav-education'},
+        {id: 'updates', nav: 'nav-updates'}
+      ];
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sectionElements = sectionNavMap.map(s => document.getElementById(s.id));
+      const navMap = Object.fromEntries(sectionNavMap.map(s => [s.id, s.nav]));
+
+      let activeNav = null;
+      const observer = new window.IntersectionObserver((entries) => {
+        let visibleSections = entries.filter(e => e.isIntersecting && e.intersectionRatio > 0.25);
+        if (visibleSections.length > 0) {
+          // Pick the section closest to the top
+          visibleSections.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          const id = visibleSections[0].target.id;
+          if (activeNav) activeNav.classList.remove('active-nav');
+          const nav = document.getElementById(navMap[id]);
+          if (nav) {
+            nav.classList.add('active-nav');
+            activeNav = nav;
+          }
+        }
+      }, {
+        threshold: [0.25]
+      });
+      sectionElements.forEach(sec => { if (sec) observer.observe(sec); });
     </script>
 </body>
 </html>
