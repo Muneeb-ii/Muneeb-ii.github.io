@@ -82,9 +82,7 @@ header, section, footer {
     display: inline-block;
 }
 .social-links img {
-    width: 28px;
-    height: 28px;
-    filter: grayscale(1) brightness(0.5);
+    filter: grayscale(1) brightness(0.2);
     transition: filter 0.2s, background 0.2s;
     background: transparent;
     border-radius: 50%;
@@ -93,7 +91,7 @@ header, section, footer {
     filter: none;
 }
 .dark-mode .social-links img {
-    filter: grayscale(1) brightness(1.5);
+    filter: brightness(0) invert(1);
     background: #232634;
 }
 
