@@ -173,11 +173,54 @@ footer {
     font-size: 0.9rem;
 }
 
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.exp-header b {
+    font-size: 1.08rem;
+    font-family: 'Tinos', serif;
+    color: var(--accent);
+}
+.exp-place {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+}
+.exp-date {
+    font-size: 1rem;
+    color: var(--muted);
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 400;
+    margin-left: 1.2rem;
+    white-space: nowrap;
+}
+.exp-bullets {
+    margin: 0.5rem 0 0.2rem 1.2rem;
+    padding-left: 1.2rem;
+    list-style: disc;
+    font-size: 1rem;
+    color: var(--text);
+    background: none;
+}
+.work-experience li, .education li {
+    margin-bottom: 1.1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem 0.7rem 1.3rem;
+    box-shadow: none;
+}
 .edu-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 0.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 .edu-header b {
     font-size: 1.08rem;
@@ -189,14 +232,31 @@ footer {
     color: var(--muted);
     font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 400;
-    margin-left: 1.5rem;
+    margin-left: 1.2rem;
     white-space: nowrap;
 }
 .edu-awards {
-    margin: 0.3rem 0 0.7rem 1.2rem;
+    margin: 0.3rem 0 0.5rem 1.2rem;
     padding-left: 1.2rem;
     list-style: disc;
     font-size: 1rem;
     color: var(--text);
     background: none;
+}
+.edu-awards li b {
+    font-weight: 600;
+    color: var(--accent);
+}
+@media (max-width: 600px) {
+    .work-experience li, .education li {
+        padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    }
+    .exp-header, .edu-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+    .exp-date, .edu-date {
+        margin-left: 0;
+    }
 }
