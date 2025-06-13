@@ -2,18 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Tinos:wght@700&display=swap');
 
 :root {
-    --accent: #1a237e;
-    --text: #222;
-    --bg: #fff;
-    --muted: #888;
+    --accent: #2340a0;
+    --text: #1a2233;
+    --bg: #f7f9fb;
+    --muted: #6c7a90;
     --card-bg: #fff;
-    --section-bg-1: #f4f6fa;
-    --section-bg-2: #fafdff;
-    --footer-bg: #1a237e;
+    --section-bg-1: #f0f4fa;
+    --section-bg-2: #f7f9fb;
+    --footer-bg: #2340a0;
     --footer-text: #fff;
-    --progress-bg: #1a237e;
-    --shadow: 0 2px 12px 0 rgba(26,35,126,0.03);
-    --card-shadow: 0 2px 8px 0 rgba(26,35,126,0.04);
+    --progress-bg: #2340a0;
+    --shadow: 0 2px 12px 0 rgba(35,64,160,0.06);
+    --card-shadow: 0 2px 8px 0 rgba(35,64,160,0.08);
 }
 .dark-mode {
     --accent: #90caf9;
@@ -119,6 +119,7 @@ header, section, footer {
 
 .photo {
     text-align: center;
+    margin-top: 2.5rem;
     margin-bottom: 2.5rem;
 }
 .photo img {
@@ -544,5 +545,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 body, html {
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 !important; 
 }
