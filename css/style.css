@@ -15,19 +15,27 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.7;
+    min-height: 100vh;
 }
 
 main {
-    max-width: 750px;
-    margin: 3rem auto 2rem auto;
-    padding: 0 1.5rem;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    background: none;
 }
 
-header {
-    background: var(--bg);
-    border-bottom: 1px solid #eee;
-    padding: 2.5rem 0 1.5rem 0;
-    text-align: center;
+header, section, footer {
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.5s;
+}
+
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 2rem 2rem;
 }
 
 .header-content h1 {
@@ -90,14 +98,20 @@ header {
 }
 
 section {
-    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto 2.5rem auto;
+    padding: 2.5rem 2rem 2.5rem 2rem;
+    border-radius: 18px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 12px 0 rgba(26,35,126,0.03);
+    transition: box-shadow 0.3s, background 0.5s;
 }
 section h2 {
     font-family: 'Tinos', serif;
     color: var(--accent);
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     letter-spacing: 0.5px;
 }
 
@@ -114,16 +128,22 @@ li {
     padding: 0;
 }
 .work-experience li, .projects li, .skills li, .education li {
-    margin-bottom: 1.2rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 1rem 1.2rem;
-    box-shadow: none;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 1.1rem;
+    padding: 1.1rem 1.3rem 0.7rem 1.3rem;
+    box-shadow: 0 2px 8px 0 rgba(26,35,126,0.04);
+    transition: box-shadow 0.3s, background 0.5s;
 }
 .work-experience li ul {
     margin: 0.5rem 0 0 1.2rem;
     padding: 0;
     list-style: disc;
+}
+.work-experience li[data-aos], .education li[data-aos], .projects li[data-aos], .skills li[data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
 }
 
 a {
@@ -148,24 +168,19 @@ a:hover {
     font-size: 1rem;
 }
 
-@media (max-width: 600px) {
-    main {
-        padding: 0 0.5rem;
-    }
-    .header-content h1 {
-        font-size: 2rem;
-    }
-    section h2 {
-        font-size: 1.2rem;
-    }
-    .photo img {
-        width: 80px;
-        height: 80px;
-    }
-}
+/* Section backgrounds for story effect */
+.about-me { background: #f4f6fa !important; }
+.work-experience { background: #fafdff !important; }
+.projects { background: #f4f6fa !important; }
+.skills { background: #fafdff !important; }
+.education { background: #f4f6fa !important; }
+.news { background: #fafdff !important; }
 
-/* Footer */
 footer {
+    width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
     text-align: center;
     padding: 1rem 0;
     background-color: #222;
@@ -207,13 +222,6 @@ footer {
     color: var(--text);
     background: none;
 }
-.work-experience li, .education li {
-    margin-bottom: 1.1rem;
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 1.1rem 1.3rem 0.7rem 1.3rem;
-    box-shadow: none;
-}
 .edu-header {
     display: flex;
     justify-content: space-between;
@@ -247,16 +255,28 @@ footer {
     font-weight: 600;
     color: var(--accent);
 }
+@media (max-width: 900px) {
+    .header-content, section {
+        max-width: 98vw;
+        padding: 2rem 0.7rem 2rem 0.7rem;
+    }
+}
 @media (max-width: 600px) {
-    .work-experience li, .education li {
+    .header-content, section {
+        max-width: 100vw;
+        padding: 1.2rem 0.2rem 1.2rem 0.2rem;
+    }
+    .work-experience li, .education li, .projects li, .skills li {
         padding: 0.7rem 0.5rem 0.5rem 0.5rem;
     }
-    .exp-header, .edu-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.2rem;
+    .header-content h1 {
+        font-size: 2rem;
     }
-    .exp-date, .edu-date {
-        margin-left: 0;
+    section h2 {
+        font-size: 1.2rem;
+    }
+    .photo img {
+        width: 80px;
+        height: 80px;
     }
 }
