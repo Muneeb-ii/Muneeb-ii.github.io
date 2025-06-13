@@ -1,10 +1,3 @@
-/* Global Styles */
-@import "{{ site.theme }}";
-
-.inner {
-  max-width: 100%;
-}
-
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Tinos:wght@700&display=swap');
 
@@ -539,4 +532,17 @@ body:not(.dark-mode) .main-navbar {
 h1, h2, h3, h4, h5, h6 {
     color: var(--accent) !important;
     font-family: 'Tinos', serif !important;
+}
+
+/* Force full width and remove padding/margin for all wrappers */
+.inner, .container, .wrapper, .page, .site, .site-content, .main-content {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+body, html {
+  padding: 0 !important;
+  margin: 0 !important;
 }
