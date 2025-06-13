@@ -370,3 +370,110 @@ footer {
     margin-top: 1rem;
     font-size: 0.95rem;
 }
+
+.main-navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    background: rgba(24, 26, 32, 0.75);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 16px 0 rgba(26,35,126,0.07);
+    transition: background 0.4s, box-shadow 0.4s;
+}
+body:not(.dark-mode) .main-navbar {
+    background: rgba(255,255,255,0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 2rem 0.2rem 2rem;
+    min-height: 64px;
+    position: relative;
+}
+.navbar-title {
+    font-family: 'Tinos', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    margin-right: 2rem;
+}
+.navbar-links {
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar-links li {
+    display: flex;
+    align-items: center;
+}
+.nav-link {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    transition: color 0.2s, font-size 0.2s, font-weight 0.2s, background 0.2s;
+    text-decoration: none;
+}
+.nav-link.active-nav {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.18rem;
+    background: rgba(144,202,249,0.10);
+}
+.theme-toggle {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: 1.5rem;
+}
+.progress-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background: var(--progress-bg) !important;
+    width: 0;
+    z-index: 101;
+    transition: width 0.2s;
+}
+@media (max-width: 900px) {
+    .navbar-content {
+        padding: 0.5rem 0.7rem 0.2rem 0.7rem;
+    }
+    .navbar-title {
+        font-size: 1.1rem;
+    }
+    .navbar-links {
+        gap: 0.7rem;
+    }
+}
+@media (max-width: 600px) {
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 48px;
+        padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+    }
+    .navbar-title {
+        margin-bottom: 0.5rem;
+    }
+    .navbar-links {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+    .theme-toggle {
+        margin-left: 0.5rem;
+    }
+}
