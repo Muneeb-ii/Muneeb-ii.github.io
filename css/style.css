@@ -1,105 +1,167 @@
-/* Global Styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Tinos:wght@700&display=swap');
+
+:root {
+    --accent: #1a237e;
+    --text: #222;
+    --bg: #fff;
+    --muted: #888;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
     margin: 0;
     padding: 0;
-    background-color: #67b7df;
-    color: #353434;
+    line-height: 1.7;
 }
 
-/* Header */
+main {
+    max-width: 750px;
+    margin: 3rem auto 2rem auto;
+    padding: 0 1.5rem;
+}
+
 header {
-    background-color: #417691;
-    color: #fff;
+    background: var(--bg);
+    border-bottom: 1px solid #eee;
+    padding: 2.5rem 0 1.5rem 0;
     text-align: center;
-    padding: 1rem 0;
 }
 
-header .header-content h1 {
-    margin: 0;
-    font-size: 2.5rem;
+.header-content h1 {
+    font-family: 'Tinos', serif;
+    color: var(--accent);
+    font-size: 2.7rem;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 1px;
 }
 
-header .header-content p {
+.header-content p,
+.header-content .social-links {
     margin: 0.5rem 0;
 }
 
-header .social-links {
-    margin: 1rem 0;
+.social-links {
+    margin: 1rem 0 0.5rem 0;
 }
-
-header .social-links .icon {
-    margin: 0 0.5rem;
+.social-links .icon {
+    margin: 0 0.4rem;
     display: inline-block;
 }
-
-header .social-links img {
-    width: 34px;
-    height: 34px;
-    vertical-align: middle;
+.social-links img {
+    width: 28px;
+    height: 28px;
+    filter: grayscale(1) brightness(0.5);
+    transition: filter 0.2s;
+}
+.social-links img:hover {
+    filter: none;
 }
 
-header .button {
+.button {
     display: inline-block;
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #0078d7;
+    padding: 0.45rem 1.2rem;
+    background: var(--accent);
     color: #fff;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+.button:hover {
+    background: #22336c;
+}
+
+.photo {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2.5px solid var(--accent);
+    object-fit: cover;
+}
+
+section {
+    margin-bottom: 2.5rem;
+}
+section h2 {
+    font-family: 'Tinos', serif;
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+li {
+    margin-bottom: 0.7rem;
     font-size: 1rem;
 }
 
-header .button:hover {
-    background-color: #0056a1;
-}
-
-/* Main Content */
-main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-main section {
-    margin-bottom: 2rem;
-}
-
-/* Photo Section */
-.photo img {
-    display: block;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 0 auto;
-    border: 3px solid #0078d7;
-}
-
-/* Section Titles */
-main section h2 {
-    font-size: 1.8rem;
-    color: #0078d7;
-    margin-bottom: 0.5rem;
-}
-
-/* Projects & News Lists */
-.projects ul, .news ul {
-    list-style-type: none;
+.work-experience ul, .projects ul, .skills ul, .education ul {
+    list-style: none;
     padding: 0;
 }
-
-.projects li, .news li {
-    margin: 0.5rem 0;
+.work-experience li, .projects li, .skills li, .education li {
+    margin-bottom: 1.2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    box-shadow: none;
+}
+.work-experience li ul {
+    margin: 0.5rem 0 0 1.2rem;
+    padding: 0;
+    list-style: disc;
 }
 
-.projects a {
-    color: #0078d7;
+a {
+    color: var(--accent);
     text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    text-decoration: underline;
+    color: #22336c;
 }
 
-.projects a:hover {
-    text-decoration: underline;
+.news ul {
+    list-style: none;
+    padding: 0;
+}
+.news li {
+    background: none;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 0.5rem;
+    }
+    .header-content h1 {
+        font-size: 2rem;
+    }
+    section h2 {
+        font-size: 1.2rem;
+    }
+    .photo img {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 /* Footer */
