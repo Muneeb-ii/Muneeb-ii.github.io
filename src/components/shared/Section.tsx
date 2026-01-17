@@ -4,15 +4,16 @@ interface SectionProps {
   children: ReactNode;
   className?: string;
   id?: string;
+  fullWidth?: boolean;
 }
 
-export function Section({ children, className = '', id }: SectionProps) {
+export function Section({ children, className = '', id, fullWidth = false }: SectionProps) {
   return (
     <section
       id={id}
-      className={`py-16 px-4 sm:px-6 lg:px-8 ${className}`}
+      className={`py-16 ${fullWidth ? '' : 'px-4 sm:px-6 lg:px-8'} ${className}`}
     >
-      <div className="max-w-7xl mx-auto">{children}</div>
+      <div className={fullWidth ? 'w-full' : 'max-w-7xl mx-auto'}>{children}</div>
     </section>
   );
 }

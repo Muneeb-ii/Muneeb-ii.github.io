@@ -16,12 +16,14 @@ export default {
         'f1-telemetry-red': '#E10600',
         'track-gray': '#1F1F1F',
         'track-light': '#F4F4F4',
-        'bg-dark': '#0A0A0A',
+        'bg-dark': '#050505', // Deep Black for higher contrast
         'bg-light': '#FAFAFA',
+        'neon-yellow': '#ccff00', // Lando-inspired accent
       },
       fontFamily: {
         'racing': ['Orbitron', 'Rajdhani', 'sans-serif'],
         'body': ['Inter', 'system-ui', 'sans-serif'],
+        'story': ['Cormorant Garamond', 'Playfair Display', 'serif'], // Editorial font
       },
     },
   },

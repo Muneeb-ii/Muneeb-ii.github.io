@@ -52,31 +52,31 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-bg-dark/80 border-b border-gray-200 dark:border-gray-800">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/50 dark:bg-black/50 border-b border-gray-200/50 dark:border-gray-800/50 transition-all duration-300">
+      <nav className="w-full px-6 md:px-12 py-4">
+        <div className="flex items-center justify-between">
           <Link
             to={routes.home}
-            className="font-racing text-xl font-bold text-f1-red dark:text-f1-orange hover:opacity-80 transition-opacity"
+            className="font-racing text-2xl font-bold tracking-tighter text-gray-900 dark:text-white hover:text-f1-red dark:hover:text-f1-orange transition-colors"
           >
-            Muneeb Azfar Nafees
+            MN <span className="hidden sm:inline text-f1-red dark:text-f1-orange">.</span>
           </Link>
 
-          <div className="flex items-center space-x-1 sm:space-x-4">
-            <div className="hidden md:flex items-center space-x-2">
+          <div className="flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link
                     key={item.id}
                     to={item.path}
-                    className={`px-3 py-2 text-sm font-medium transition-colors ${
-                      isActive
-                        ? 'text-f1-red dark:text-f1-orange border-b-2 border-f1-red dark:border-f1-orange'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-f1-red dark:hover:text-f1-orange'
-                    }`}
+                    className={`relative text-sm font-medium tracking-wide uppercase transition-colors group ${isActive
+                      ? 'text-f1-red dark:text-f1-orange'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
+                      }`}
                   >
                     {item.label}
+                    <span className={`absolute -bottom-1 left-0 h-px bg-f1-red dark:bg-f1-orange transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                   </Link>
                 );
               })}
@@ -84,7 +84,7 @@ export function Header() {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
               aria-label="Toggle theme"
             >
               {isDark ? '☀️' : '🌙'}
@@ -92,17 +92,16 @@ export function Header() {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="md:hidden p-2 text-gray-900 dark:text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
-              {...(mobileMenuOpen ? { 'aria-expanded': 'true' } : { 'aria-expanded': 'false' })}
             >
-              {mobileMenuOpen ? '✕' : '☰'}
+              <span className="text-xl font-bold">MENU</span>
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu overlay */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -110,20 +109,19 @@ export function Header() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="md:hidden overflow-hidden"
+              className="md:hidden overflow-hidden bg-white dark:bg-black absolute top-[100%] left-0 right-0 border-b border-gray-200 dark:border-gray-800"
             >
-              <div className="py-4 space-y-2 border-t border-gray-200 dark:border-gray-800">
+              <div className="px-6 py-8 flex flex-col space-y-4">
                 {navItems.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
                     <Link
                       key={item.id}
                       to={item.path}
-                      className={`block px-4 py-2 text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'text-f1-red dark:text-f1-orange bg-gray-100 dark:bg-gray-800'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                      }`}
+                      className={`text-2xl font-racing font-bold uppercase transition-colors ${isActive
+                        ? 'text-f1-red dark:text-f1-orange'
+                        : 'text-gray-900 dark:text-white'
+                        }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.label}

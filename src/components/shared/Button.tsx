@@ -23,11 +23,11 @@ export function Button({
 
   const variantClasses = {
     primary:
-      'bg-f1-red dark:bg-f1-orange text-white hover:opacity-90 focus:ring-f1-red dark:focus:ring-f1-orange',
+      'bg-f1-red dark:bg-f1-orange text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black focus:ring-f1-red dark:focus:ring-f1-orange shadow-lg hover:shadow-xl',
     secondary:
-      'bg-f1-telemetry-green text-gray-900 hover:opacity-90 focus:ring-f1-telemetry-green',
+      'bg-f1-telemetry-green text-black hover:bg-white hover:text-black focus:ring-f1-telemetry-green',
     outline:
-      'border-2 border-f1-red dark:border-f1-orange text-f1-red dark:text-f1-orange hover:bg-f1-red dark:hover:bg-f1-orange hover:text-white focus:ring-f1-red dark:focus:ring-f1-orange',
+      'border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-900 focus:ring-gray-200',
   };
 
   const classes = `${baseClasses} ${variantClasses[variant]} ${className}`;

@@ -71,108 +71,108 @@ export function Achievements() {
           }
         >
           {achievementsByCategory.academic.length > 0 && (
-            <motion.div variants={motionVariants}>
-              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+            <motion.div variants={motionVariants} className="mb-16">
+              <h2 className="text-4xl font-racing font-bold mb-8 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-800 pb-4">
                 {categoryLabels.academic}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {achievementsByCategory.academic.map((achievement, idx) => (
                   <div
                     key={idx}
-                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                    className="group flex flex-col md:flex-row md:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-red dark:hover:border-f1-orange p-6 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                    <div>
+                      <h3 className="text-xl font-bold font-racing text-gray-900 dark:text-white mb-2">
                         {achievement.title}
                       </h3>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
-                        {achievement.period}
-                      </span>
+                      <p className="text-lg font-story italic text-gray-600 dark:text-gray-400">
+                        {achievement.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      {achievement.description}
-                    </p>
+                    <span className="mt-4 md:mt-0 text-sm font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap ml-8">
+                      {achievement.period}
+                    </span>
                   </div>
                 ))}
               </div>
             </motion.div>
           )}
           {achievementsByCategory.leadership.length > 0 && (
-            <motion.div variants={motionVariants}>
-              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+            <motion.div variants={motionVariants} className="mb-16">
+              <h2 className="text-4xl font-racing font-bold mb-8 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-800 pb-4">
                 {categoryLabels.leadership}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {achievementsByCategory.leadership.map((achievement, idx) => (
                   <div
                     key={idx}
-                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                    className="group flex flex-col md:flex-row md:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-red dark:hover:border-f1-orange p-6 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                    <div>
+                      <h3 className="text-xl font-bold font-racing text-gray-900 dark:text-white mb-2">
                         {achievement.title}
                       </h3>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
-                        {achievement.period}
-                      </span>
+                      <p className="text-lg font-story italic text-gray-600 dark:text-gray-400">
+                        {achievement.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      {achievement.description}
-                    </p>
+                    <span className="mt-4 md:mt-0 text-sm font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap ml-8">
+                      {achievement.period}
+                    </span>
                   </div>
                 ))}
               </div>
             </motion.div>
           )}
           {achievementsByCategory.competition.length > 0 && (
-            <motion.div variants={motionVariants}>
-              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+            <motion.div variants={motionVariants} className="mb-16">
+              <h2 className="text-4xl font-racing font-bold mb-8 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-800 pb-4">
                 {categoryLabels.competition}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {achievementsByCategory.competition.map((achievement, idx) => (
                   <div
                     key={idx}
-                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                    className="group flex flex-col md:flex-row md:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-red dark:hover:border-f1-orange p-6 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                    <div>
+                      <h3 className="text-xl font-bold font-racing text-gray-900 dark:text-white mb-2">
                         {achievement.title}
                       </h3>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
-                        {achievement.period}
-                      </span>
+                      <p className="text-lg font-story italic text-gray-600 dark:text-gray-400">
+                        {achievement.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      {achievement.description}
-                    </p>
+                    <span className="mt-4 md:mt-0 text-sm font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap ml-8">
+                      {achievement.period}
+                    </span>
                   </div>
                 ))}
               </div>
             </motion.div>
           )}
           {achievementsByCategory.other.length > 0 && (
-            <motion.div variants={motionVariants}>
-              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+            <motion.div variants={motionVariants} className="mb-16">
+              <h2 className="text-4xl font-racing font-bold mb-8 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-800 pb-4">
                 {categoryLabels.other}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {achievementsByCategory.other.map((achievement, idx) => (
                   <div
                     key={idx}
-                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                    className="group flex flex-col md:flex-row md:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-red dark:hover:border-f1-orange p-6 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                    <div>
+                      <h3 className="text-xl font-bold font-racing text-gray-900 dark:text-white mb-2">
                         {achievement.title}
                       </h3>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
-                        {achievement.period}
-                      </span>
+                      <p className="text-lg font-story italic text-gray-600 dark:text-gray-400">
+                        {achievement.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      {achievement.description}
-                    </p>
+                    <span className="mt-4 md:mt-0 text-sm font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap ml-8">
+                      {achievement.period}
+                    </span>
                   </div>
                 ))}
               </div>
