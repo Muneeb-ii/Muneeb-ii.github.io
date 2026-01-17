@@ -14,6 +14,8 @@ export function Achievements() {
     transition: { duration: prefersReducedMotion ? 0 : 0.6 },
   };
 
+  const motionVariants = prefersReducedMotion ? {} : fadeIn;
+
   const achievementsByCategory = {
     academic: content.achievements.filter((a) => a.category === 'academic'),
     leadership: content.achievements.filter((a) => a.category === 'leadership'),
@@ -60,45 +62,121 @@ export function Achievements() {
             prefersReducedMotion
               ? {}
               : {
-                  animate: {
-                    transition: {
-                      staggerChildren: 0.1,
-                    },
+                animate: {
+                  transition: {
+                    staggerChildren: 0.1,
                   },
-                }
+                },
+              }
+          }
         >
-          {Object.entries(achievementsByCategory).map(
-            ([category, achievements]) => {
-              if (achievements.length === 0) return null;
-
-              return (
-                <motion.div key={category} variants={prefersReducedMotion ? {} : fadeIn}>
-                  <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
-                    {categoryLabels[category as keyof typeof categoryLabels]}
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {achievements.map((achievement, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
-                      >
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
-                            {achievement.title}
-                          </h3>
-                          <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
-                            {achievement.period}
-                          </span>
-                        </div>
-                        <p className="text-sm text-gray-700 dark:text-gray-300">
-                          {achievement.description}
-                        </p>
-                      </div>
-                    ))}
+          {achievementsByCategory.academic.length > 0 && (
+            <motion.div variants={motionVariants}>
+              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+                {categoryLabels.academic}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {achievementsByCategory.academic.map((achievement, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                        {achievement.title}
+                      </h3>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
+                        {achievement.period}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {achievement.description}
+                    </p>
                   </div>
-                </motion.div>
-              );
-            }
+                ))}
+              </div>
+            </motion.div>
+          )}
+          {achievementsByCategory.leadership.length > 0 && (
+            <motion.div variants={motionVariants}>
+              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+                {categoryLabels.leadership}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {achievementsByCategory.leadership.map((achievement, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                        {achievement.title}
+                      </h3>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
+                        {achievement.period}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {achievement.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+          {achievementsByCategory.competition.length > 0 && (
+            <motion.div variants={motionVariants}>
+              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+                {categoryLabels.competition}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {achievementsByCategory.competition.map((achievement, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                        {achievement.title}
+                      </h3>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
+                        {achievement.period}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {achievement.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+          {achievementsByCategory.other.length > 0 && (
+            <motion.div variants={motionVariants}>
+              <h2 className="text-2xl font-racing font-bold mb-6 text-gray-900 dark:text-white">
+                {categoryLabels.other}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {achievementsByCategory.other.map((achievement, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white dark:bg-gray-900 border-2 border-f1-gold rounded-lg p-6 shadow-lg"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-racing font-bold text-gray-900 dark:text-white">
+                        {achievement.title}
+                      </h3>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-4">
+                        {achievement.period}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {achievement.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           )}
         </motion.div>
 
