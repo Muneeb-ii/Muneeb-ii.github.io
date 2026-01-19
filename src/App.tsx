@@ -11,12 +11,7 @@ import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { ProjectDetailPage } from './pages/ProjectDetail';
 import { Experience } from './pages/Experience';
-import { Research } from './pages/Research';
 import { About } from './pages/About';
-import { Quant } from './pages/Quant';
-import { Contact } from './pages/Contact';
-import { Skills } from './pages/Skills';
-import { Achievements } from './pages/Achievements';
 import { NotFound } from './pages/NotFound';
 import { routes } from './utils/routing';
 
@@ -33,12 +28,7 @@ function AnimatedRoutes() {
           element={<PageTransition><ProjectDetailPage /></PageTransition>}
         />
         <Route path={routes.experience} element={<PageTransition><Experience /></PageTransition>} />
-        <Route path={routes.research} element={<PageTransition><Research /></PageTransition>} />
         <Route path={routes.about} element={<PageTransition><About /></PageTransition>} />
-        <Route path={routes.quant} element={<PageTransition><Quant /></PageTransition>} />
-        <Route path={routes.contact} element={<PageTransition><Contact /></PageTransition>} />
-        <Route path={routes.skills} element={<PageTransition><Skills /></PageTransition>} />
-        <Route path={routes.achievements} element={<PageTransition><Achievements /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>

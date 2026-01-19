@@ -106,8 +106,8 @@ export function Home() {
                 <Button to={routes.projects} variant="primary" className="text-lg px-8 py-4">
                   Explore Garage
                 </Button>
-                <Button to={routes.contact} variant="outline" className="text-lg px-8 py-4">
-                  Contact Team
+                <Button href={content.personalInfo.links.email} variant="outline" className="text-lg px-8 py-4">
+                  Get In Touch
                 </Button>
               </motion.div>
             </div>

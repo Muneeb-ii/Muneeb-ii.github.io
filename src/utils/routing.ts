@@ -3,12 +3,7 @@ export const routes = {
   projects: '/projects',
   projectDetail: (id: string) => `/projects/${id}`,
   experience: '/experience',
-  research: '/research',
   about: '/about',
-  quant: '/quant',
-  contact: '/contact',
-  skills: '/skills',
-  achievements: '/achievements',
 };
 
 export function slugify(text: string): string {

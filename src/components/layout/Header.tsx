@@ -9,12 +9,7 @@ import { easings } from '../../utils/animations';
 const navItems = [
   { label: 'Paddock', path: routes.about, id: 'about' },
   { label: 'Garage', path: routes.projects, id: 'projects' },
-  { label: 'Telemetry', path: routes.skills, id: 'skills' },
   { label: 'Pit Wall', path: routes.experience, id: 'experience' },
-  { label: 'Qualifying', path: routes.achievements, id: 'achievements' },
-  { label: 'Research', path: routes.research, id: 'research' },
-  { label: 'Race Log', path: routes.quant, id: 'quant' },
-  { label: 'Contact', path: routes.contact, id: 'contact' },
 ];
 
 export function Header() {
