@@ -70,16 +70,16 @@ export function FloatingStats({ stats, className = '' }: FloatingStatsProps) {
           {/* Glow effect on hover */}
           <div className="absolute inset-0 bg-f1-red/20 dark:bg-f1-orange/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
-          {/* Stat card */}
-          <div className="relative bg-black/80 dark:bg-black/90 backdrop-blur-sm border border-gray-800 px-4 py-2 rounded">
+          {/* Stat card - Light mode: white card, Dark mode: dark card */}
+          <div className="relative bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-gray-200 dark:border-gray-800 px-4 py-2 rounded shadow-lg dark:shadow-none">
             {/* Top accent line */}
             <div className="absolute top-0 left-2 right-2 h-px bg-gradient-to-r from-transparent via-f1-red dark:via-f1-orange to-transparent" />
             
             <div className="flex items-baseline gap-2">
-              <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">
+              <span className="text-xs font-mono text-gray-500 dark:text-gray-500 uppercase tracking-widest">
                 {stat.label}
               </span>
-              <span className="text-lg font-racing font-bold text-white">
+              <span className="text-lg font-racing font-bold text-gray-900 dark:text-white">
                 {stat.value}
               </span>
             </div>
