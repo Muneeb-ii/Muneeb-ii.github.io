@@ -23,9 +23,21 @@ export function TelemetryCard({
     critical: 'border-f1-red',
   };
 
+  const statusBgColors = {
+    good: 'from-emerald-50 to-white dark:from-emerald-950/20 dark:to-gray-900',
+    warning: 'from-amber-50 to-white dark:from-amber-950/20 dark:to-gray-900',
+    critical: 'from-rose-50 to-white dark:from-rose-950/20 dark:to-gray-900',
+  };
+
+  const statusGlowColors = {
+    good: 'shadow-emerald-500/10 dark:shadow-emerald-500/20',
+    warning: 'shadow-amber-500/10 dark:shadow-amber-500/20',
+    critical: 'shadow-rose-500/10 dark:shadow-rose-500/20',
+  };
+
   return (
     <div
-      className={`bg-white dark:bg-gray-900 border-2 ${statusColors[status]} rounded-lg p-4 shadow-lg ${className}`}
+      className={`bg-gradient-to-br ${statusBgColors[status]} border-2 ${statusColors[status]} rounded-lg p-4 shadow-lg ${statusGlowColors[status]} hover:shadow-xl transition-all ${className}`}
     >
       <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
         {title}

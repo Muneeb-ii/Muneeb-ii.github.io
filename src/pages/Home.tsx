@@ -1,5 +1,5 @@
-
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { content } from '../data/content';
 import { Section } from '../components/shared/Section';
 import { TelemetryCard } from '../components/f1/TelemetryCard';
@@ -8,177 +8,386 @@ import { Button } from '../components/shared/Button';
 import { SEO } from '../components/shared/SEO';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import { routes } from '../utils/routing';
-import { AnimatedHeading } from '../components/shared/AnimatedText';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '../components/shared/ScrollReveal';
 import { easings, durations } from '../utils/animations';
-
+import { RacingGrid, HUDBrackets, FloatingStats, MouseSpotlight, StatusTicker } from '../components/hero';
 
 export function Home() {
   const featuredProjects = content.projects.filter((p) => p.featured).slice(0, 4);
   const prefersReducedMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Parallax scroll effects
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const watermarkY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const photoScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+  const photoGrayscale = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   // Determine grid columns based on number of featured projects
   const gridCols = featuredProjects.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2';
 
-  // Image reveal animation
-  const imageReveal = {
-    initial: { 
-      clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
-      opacity: 0,
-    },
-    animate: { 
-      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-      opacity: 1,
-      transition: { 
-        duration: durations.cinematic, 
-        ease: easings.expo,
-        delay: 0.5,
-      },
-    },
+  // Status ticker items
+  const statusItems = [
+    'CS (AI) + Mathematical Science @ Colby',
+    'Research @ Lyons Art Lab',
+    'Building ML & Quant Systems',
+    'Shipping Products That Work',
+  ];
+
+  // Floating stats data
+  const heroStats = [
+    { label: 'GPA', value: '4.15' },
+    { label: 'PROJECTS', value: '10+' },
+  ];
+
+  // Animation delays for orchestrated entry
+  const delays = {
+    watermark: 0.3,
+    name1: 0.4,
+    name2: 0.6,
+    telemetryLine: 0.8,
+    roleDescriptor: 0.9,
+    photo: 1.0,
+    tagline: 1.2,
+    statusTicker: 1.4,
+    stats: 1.5,
+    buttons: 1.6,
+    scroll: 1.8,
   };
 
   return (
     <>
       <SEO
         title="Home"
-        description={content.personalInfo.headline}
+        description="Engineering intelligent systems — from data to deployment."
         path="/"
       />
       <div className="overflow-x-hidden">
-        {/* Hero Section - Asymmetrical & Story Driven */}
-        <Section fullWidth className="h-screen min-h-[800px] relative flex items-center p-0">
-          {/* Background Elements */}
-          <div className="absolute inset-0 z-0 opacity-20 dark:opacity-40">
-            <div className="absolute right-0 top-0 w-2/3 h-full bg-gradient-to-l from-gray-100 to-transparent dark:from-gray-900" />
+        {/* Hero Section - Cinematic F1-Inspired */}
+        <Section 
+          fullWidth 
+          className="h-screen min-h-[800px] relative flex items-center p-0 bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200 dark:from-[#0a0a0f] dark:via-[#0f0a1a] dark:to-[#0a0f1a]"
+          ref={heroRef}
+        >
+          {/* Cinematic gradient mesh background */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Primary gradient orb - top right */}
+            <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-rose-500/20 via-orange-500/10 to-transparent dark:from-rose-600/30 dark:via-orange-500/20 blur-3xl" />
+            
+            {/* Secondary gradient orb - bottom left */}
+            <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-500/10 via-indigo-500/10 to-transparent dark:from-blue-600/20 dark:via-indigo-500/15 blur-3xl" />
+            
+            {/* Accent glow - center */}
+            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-amber-500/5 to-rose-500/5 dark:from-amber-500/10 dark:to-rose-500/10 blur-3xl" />
           </div>
 
-          <div className="container mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
-            {/* Text Content - Left Side (7/12) */}
-            <div className="lg:col-span-7 flex flex-col justify-center">
-              {/* Kinetic Typography Hero */}
-              <AnimatedHeading
-                lines={[
-                  { 
-                    text: 'MUNEEB', 
-                    className: 'text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-400 dark:to-gray-600' 
-                  },
-                  { 
-                    text: 'NAFEES', 
-                    className: 'text-gray-900 dark:text-white ml-2' 
-                  },
-                ]}
-                lineClassName="text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter"
-                className="mb-8"
-                delay={0.2}
-              />
+          {/* Mouse-following spotlight */}
+          <MouseSpotlight />
 
+          {/* Animated racing grid background */}
+          <RacingGrid />
+
+          {/* HUD corner brackets */}
+          <HUDBrackets />
+
+          {/* Giant MN Watermark - Parallax */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+            style={{ y: prefersReducedMotion ? 0 : watermarkY }}
+          >
+            <motion.span
+              className="text-[20rem] md:text-[30rem] lg:text-[40rem] font-racing font-bold text-gray-200/5 dark:text-white/5 tracking-tighter"
+              initial={{ opacity: 0, scale: 0.8, filter: 'blur(20px)' }}
+              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              transition={{ 
+                delay: delays.watermark, 
+                duration: durations.cinematic,
+                ease: easings.expo,
+              }}
+            >
+              MN
+            </motion.span>
+          </motion.div>
+
+          {/* Main hero content with parallax fade */}
+          <motion.div 
+            className="container mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center h-full"
+            style={{ opacity: prefersReducedMotion ? 1 : heroOpacity }}
+          >
+            {/* Text Content - Left Side (7/12) */}
+            <div className="lg:col-span-7 flex flex-col justify-center pt-20 lg:pt-0">
+              {/* Name with character-by-character reveal */}
+          <div className="mb-6">
+                {/* MUNEEB */}
+                <div className="overflow-hidden">
+                  <motion.h1
+                    className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-400 dark:to-gray-600"
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ 
+                      delay: delays.name1, 
+                      duration: durations.slow,
+                      ease: easings.expo,
+                    }}
+                  >
+                    MUNEEB
+                  </motion.h1>
+                </div>
+
+                {/* NAFEES */}
+                <div className="overflow-hidden">
+                  <motion.h1
+                    className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter text-gray-900 dark:text-white -mt-2 md:-mt-4"
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ 
+                      delay: delays.name2, 
+                      duration: durations.slow,
+                      ease: easings.expo,
+                    }}
+                  >
+                    NAFEES
+                  </motion.h1>
+                </div>
+
+                {/* Animated telemetry line */}
+                <motion.div
+                  className="h-0.5 bg-gradient-to-r from-f1-red via-f1-red to-transparent dark:from-f1-orange dark:via-f1-orange mt-4 max-w-md"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ 
+                    delay: delays.telemetryLine, 
+                    duration: durations.slow,
+                    ease: easings.expo,
+                  }}
+                  style={{ originX: 0 }}
+                />
+
+                {/* Role descriptor */}
+                <motion.div
+                  className="flex items-center gap-3 mt-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    delay: delays.roleDescriptor, 
+                    duration: durations.normal,
+                    ease: easings.smooth,
+                  }}
+                >
+                  {['AI', 'SYSTEMS', 'QUANT'].map((word, idx) => (
+                    <motion.span
+                      key={word}
+                      className="text-sm md:text-base font-racing font-bold tracking-[0.3em] text-gray-500 dark:text-gray-400"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ 
+                        delay: delays.roleDescriptor + (idx * 0.1), 
+                        duration: durations.normal,
+                      }}
+                    >
+                      {word}
+                      {idx < 2 && <span className="text-f1-red dark:text-f1-orange ml-3">•</span>}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Tagline */}
               <motion.div
-                className="pl-2 border-l-4 border-f1-red dark:border-f1-orange"
-                initial={{ opacity: 0, x: -30, scaleY: 0 }}
-                animate={{ opacity: 1, x: 0, scaleY: 1 }}
+                className="mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ 
-                  delay: 0.8, 
-                  duration: durations.slow, 
+                  delay: delays.tagline, 
+                  duration: durations.slow,
                   ease: easings.smooth,
                 }}
-                style={{ transformOrigin: 'top left' }}
               >
-                <motion.p 
-                  className="text-2xl md:text-3xl font-story italic text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.0, duration: durations.slow }}
-                >
-                  "Building intelligent systems that push the boundaries of what's possible."
-                </motion.p>
+                <p className="text-xl md:text-2xl lg:text-3xl font-story text-gray-700 dark:text-gray-300 max-w-xl leading-relaxed">
+                  Engineering intelligent systems — from data to deployment.
+                </p>
               </motion.div>
 
+              {/* Status Ticker */}
               <motion.div
-                className="mt-12 flex flex-wrap gap-6"
+                className="mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: delays.statusTicker, duration: durations.normal }}
+              >
+                <StatusTicker items={statusItems} interval={3000} />
+              </motion.div>
+
+              {/* Floating Stats */}
+              <FloatingStats stats={heroStats} className="mb-8" />
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="flex flex-wrap gap-4"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
-                  delay: 1.2, 
-                  duration: durations.slow, 
+                  delay: delays.buttons, 
+                  duration: durations.slow,
                   ease: easings.smooth,
                 }}
               >
-                <Button to={routes.projects} variant="primary" className="text-lg px-8 py-4">
-                  Explore Garage
+                <Button to={routes.projects} variant="primary" className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+                  View Projects
                 </Button>
-                <Button href={content.personalInfo.links.email} variant="outline" className="text-lg px-8 py-4">
-                  Get In Touch
+                <Button to={routes.experience} variant="outline" className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+                  See Experience
                 </Button>
               </motion.div>
             </div>
 
-            {/* Image/Graphic - Right Side (5/12) - Overlapping with clip-path reveal */}
+            {/* Photo - Right Side (5/12) with Parallax & Effects */}
             <motion.div
               className="hidden lg:block lg:col-span-5 relative h-full"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: durations.normal }}
+              transition={{ delay: delays.photo, duration: durations.normal }}
             >
               <div className="absolute top-1/2 -translate-y-1/2 right-0 w-full aspect-[3/4]">
-                {/* Image with clip-path reveal animation */}
+                {/* Scan line effect overlay */}
+                <motion.div
+                  className="absolute inset-0 z-20 pointer-events-none overflow-hidden"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: delays.photo + 0.5, duration: 0.8 }}
+                >
+                  {/* Horizontal scan lines */}
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)',
+                    }}
+                  />
+                  {/* Moving scan bar */}
+                  <motion.div
+                    className="absolute left-0 right-0 h-8 bg-gradient-to-b from-transparent via-white/20 to-transparent"
+                    initial={{ top: '-10%' }}
+                    animate={{ top: '110%' }}
+                    transition={{ 
+                      delay: delays.photo,
+                      duration: 0.8, 
+                      ease: 'linear',
+                    }}
+                  />
+                </motion.div>
+
+                {/* Photo with parallax and color reveal */}
                 <motion.div
                   className="relative w-full h-full overflow-hidden"
-                  variants={prefersReducedMotion ? undefined : imageReveal}
-                  initial="initial"
-                  animate="animate"
+                  style={{ 
+                    y: prefersReducedMotion ? 0 : photoY,
+                    scale: prefersReducedMotion ? 1 : photoScale,
+                  }}
+                  initial={{ 
+                    clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
+                  }}
+                  animate={{ 
+                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+                  }}
+                  transition={{ 
+                    delay: delays.photo,
+                    duration: durations.cinematic, 
+                    ease: easings.expo,
+                  }}
                 >
-                  <motion.img
-                    src="/assets/images/Picture.jpeg"
-                    alt={content.personalInfo.name}
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out shadow-2xl"
-                    style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)' }}
+            <motion.img
+              src="/assets/images/Picture.jpeg"
+              alt={content.personalInfo.name}
+                    className="w-full h-full object-cover shadow-2xl"
+                    style={{ 
+                      clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)',
+                      filter: prefersReducedMotion ? 'grayscale(0)' : `grayscale(${photoGrayscale.get()})`,
+                    }}
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: durations.normal }}
                   />
+                  
+                  {/* Color overlay that fades */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-f1-red/10 to-transparent dark:from-f1-orange/10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: delays.photo + 0.8, duration: durations.slow }}
+                  />
                 </motion.div>
-                {/* Decorative Overlay with staggered animation */}
-                <motion.div 
-                  className="absolute -bottom-10 -left-10 w-40 h-40 border-l-2 border-b-2 border-f1-red dark:border-f1-orange opacity-60"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 0.6, scale: 1 }}
-                  transition={{ delay: 1.4, duration: durations.slow, ease: easings.smooth }}
-                />
-                <motion.div 
-                  className="absolute -top-10 -right-10 w-40 h-40 border-r-2 border-t-2 border-f1-red dark:border-f1-orange opacity-60"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 0.6, scale: 1 }}
-                  transition={{ delay: 1.6, duration: durations.slow, ease: easings.smooth }}
-                />
-              </div>
-            </motion.div>
-          </div>
 
-          {/* Scroll Indicator with bounce animation */}
-          <motion.div
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                {/* Decorative corner accents */}
+                <motion.div 
+                  className="absolute -bottom-6 -left-6 w-32 h-32 border-l-2 border-b-2 border-f1-red dark:border-f1-orange"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 0.6, scale: 1 }}
+                  transition={{ delay: delays.photo + 0.4, duration: durations.slow, ease: easings.smooth }}
+                />
+                <motion.div 
+                  className="absolute -top-6 -right-6 w-32 h-32 border-r-2 border-t-2 border-f1-red dark:border-f1-orange"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 0.6, scale: 1 }}
+                  transition={{ delay: delays.photo + 0.6, duration: durations.slow, ease: easings.smooth }}
+                />
+
+                {/* "LIVE" indicator */}
+                <motion.div
+                  className="absolute top-4 left-4 flex items-center gap-2 bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: delays.photo + 0.8, duration: durations.normal }}
+                >
+                  <motion.div
+                    className="w-2 h-2 rounded-full bg-f1-red"
+                    animate={{ opacity: [1, 0.3, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                  <span className="text-xs font-mono text-white uppercase tracking-wider">Live</span>
+                </motion.div>
+          </div>
+            </motion.div>
+        </motion.div>
+
+          {/* Scroll Indicator */}
+        <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: durations.slow, ease: easings.smooth }}
+            transition={{ delay: delays.scroll, duration: durations.slow, ease: easings.smooth }}
           >
-            <span className="text-sm font-racing tracking-widest text-gray-400">SCROLL</span>
+            <span className="text-xs font-racing tracking-[0.3em] text-gray-500 uppercase">Scroll</span>
             <motion.div 
-              className="w-[1px] h-12 bg-gradient-to-b from-f1-red to-transparent dark:from-f1-orange"
+              className="w-px h-12 bg-gradient-to-b from-f1-red to-transparent dark:from-f1-orange"
               animate={{ 
-                scaleY: [1, 1.2, 1],
-                opacity: [0.6, 1, 0.6],
+                scaleY: [1, 1.3, 1],
+                opacity: [0.5, 1, 0.5],
               }}
               transition={{ 
                 duration: 1.5, 
                 repeat: Infinity, 
-                ease: easings.smooth,
+                ease: 'easeInOut',
               }}
             />
           </motion.div>
+
+          {/* Bottom peek gradient - hints at content below */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-slate-50/80 dark:from-black dark:via-[#0a0a0f]/80 to-transparent pointer-events-none" />
         </Section>
 
-        {/* Narrative / Bio Section - Text Heavy, Editorial */}
-        <Section className="py-24 bg-white dark:bg-black">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Narrative / Bio Section */}
+        <Section className="py-24 bg-gradient-to-b from-white via-slate-50/50 to-white dark:from-black dark:via-[#0a0a12] dark:to-black relative overflow-hidden">
+          {/* Subtle background orbs */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-rose-500/5 to-transparent dark:from-rose-500/10 blur-3xl" />
+            <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-blue-500/5 to-transparent dark:from-blue-500/10 blur-3xl" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative">
             <ScrollReveal direction="left" delay={0.1}>
               <h2 className="text-sm font-racing font-bold tracking-widest text-f1-red dark:text-f1-orange mb-4 uppercase">
                 Driver Profile
@@ -188,17 +397,21 @@ export function Home() {
               </p>
               <div className="mt-8 grid grid-cols-2 gap-8">
                 <ScrollReveal direction="up" delay={0.3}>
-                  <h3 className="text-4xl font-racing font-bold text-gray-900 dark:text-white">4.15</h3>
-                  <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">GPA</p>
+                  <div className="bg-gradient-to-br from-rose-50 to-white dark:from-rose-950/30 dark:to-transparent p-4 rounded-lg border border-rose-100 dark:border-rose-900/30">
+                    <h3 className="text-4xl font-racing font-bold text-gray-900 dark:text-white">4.15</h3>
+                    <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">GPA</p>
+                  </div>
                 </ScrollReveal>
                 <ScrollReveal direction="up" delay={0.4}>
-                  <h3 className="text-4xl font-racing font-bold text-gray-900 dark:text-white">CS+AI</h3>
-                  <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">Focus</p>
+                  <div className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/30 dark:to-transparent p-4 rounded-lg border border-blue-100 dark:border-blue-900/30">
+                    <h3 className="text-4xl font-racing font-bold text-gray-900 dark:text-white">CS+AI</h3>
+                    <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">Focus</p>
+                  </div>
                 </ScrollReveal>
               </div>
             </ScrollReveal>
             <div className="relative">
-              {/* Telemetry Grid Reimagined with staggered reveal */}
+              {/* Telemetry Grid */}
               <StaggerContainer staggerSpeed="slow" className="grid grid-cols-1 gap-4">
                 <StaggerItem direction="right">
                   <TelemetryCard
@@ -209,28 +422,33 @@ export function Home() {
                   />
                 </StaggerItem>
                 <StaggerItem direction="left">
-                  <TelemetryCard
-                    title="Racecraft"
+            <TelemetryCard
+              title="Racecraft"
                     value="Shipping • Iteration"
-                    status="good"
+              status="good"
                     className="transform -translate-x-4"
-                  />
+            />
                 </StaggerItem>
                 <StaggerItem direction="right">
-                  <TelemetryCard
-                    title="Current Status"
+            <TelemetryCard
+              title="Current Status"
                     value="Building & Scaling"
-                    status="good"
+              status="good"
                     className="transform translate-x-8"
                   />
                 </StaggerItem>
               </StaggerContainer>
             </div>
-          </div>
-        </Section>
+        </div>
+      </Section>
 
-        {/* Featured Projects - Full Width Showcase */}
-        <Section fullWidth className="py-32 bg-gray-50 dark:bg-[#080808]">
+        {/* Featured Projects Section */}
+        <Section fullWidth className="pt-32 pb-20 bg-gradient-to-b from-slate-50 via-gray-100 to-gray-200 dark:from-[#080808] dark:via-[#0a0a12] dark:to-[#0a0a0f] relative overflow-hidden">
+          {/* Background gradient orbs */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-rose-500/5 to-transparent dark:from-rose-500/10 blur-3xl" />
+            <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] rounded-full bg-gradient-to-l from-indigo-500/5 to-transparent dark:from-indigo-500/10 blur-3xl" />
+          </div>
           <div className="container mx-auto px-6 md:px-12">
             <ScrollReveal direction="up" className="flex justify-between items-end mb-16">
               <h2 className="text-5xl md:text-7xl font-racing font-bold text-gray-900 dark:text-white">
@@ -242,21 +460,20 @@ export function Home() {
             </ScrollReveal>
 
             <StaggerContainer staggerSpeed="normal" className={`grid ${gridCols} gap-8`}>
-              {featuredProjects.map((project: any) => (
+              {featuredProjects.map((project) => (
                 <StaggerItem key={project.id} direction="up">
-                  <ProjectCard project={project} />
+              <ProjectCard project={project} />
                 </StaggerItem>
-              ))}
+          ))}
             </StaggerContainer>
             <ScrollReveal direction="up" delay={0.3} className="mt-12 text-center md:hidden">
-              <Button to={routes.projects} variant="outline">
+          <Button to={routes.projects} variant="outline">
                 View All Specs
-              </Button>
+          </Button>
             </ScrollReveal>
-          </div>
-        </Section>
-
-      </div>
+        </div>
+      </Section>
+    </div>
     </>
   );
 }

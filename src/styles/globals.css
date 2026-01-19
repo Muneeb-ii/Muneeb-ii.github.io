@@ -13,6 +13,17 @@
     --track-light: #F4F4F4;
     --bg-dark: #0A0A0A;
     --bg-light: #FAFAFA;
+    
+    /* New gradient colors */
+    --gradient-warm: rgba(225, 6, 0, 0.03);
+    --gradient-cool: rgba(59, 130, 246, 0.02);
+    --gradient-accent: rgba(245, 158, 11, 0.02);
+  }
+
+  .dark {
+    --gradient-warm: rgba(225, 6, 0, 0.06);
+    --gradient-cool: rgba(59, 130, 246, 0.04);
+    --gradient-accent: rgba(245, 158, 11, 0.04);
   }
 
   * {
@@ -22,6 +33,23 @@
   body {
     @apply bg-bg-light dark:bg-bg-dark text-gray-900 dark:text-gray-100 font-body;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Subtle page background gradient - Light Mode */
+  .page-gradient {
+    background: 
+      radial-gradient(ellipse at top right, rgba(225, 6, 0, 0.03), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.02), transparent 50%),
+      linear-gradient(to bottom, #FAFAFA, #F5F5F5);
+  }
+
+  /* Subtle page background gradient - Dark Mode */
+  .dark .page-gradient {
+    background: 
+      radial-gradient(ellipse at top right, rgba(225, 6, 0, 0.08), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.05), transparent 50%),
+      radial-gradient(ellipse at center, rgba(139, 92, 246, 0.03), transparent 60%),
+      linear-gradient(to bottom, #0a0a0f, #0f0a15, #0a0a0f);
   }
 
   h1,
@@ -38,22 +66,83 @@
     @apply bg-f1-red text-white;
   }
 
+  .dark ::selection {
+    @apply bg-f1-orange text-black;
+  }
+
   /* Smooth Scroll */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Custom Scrollbar */
+  /* Custom Scrollbar - Light Mode */
   ::-webkit-scrollbar {
     width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-bg-dark;
+    @apply bg-gray-100;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-f1-red rounded-full;
+    @apply bg-f1-red/60 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-f1-red;
+  }
+
+  /* Custom Scrollbar - Dark Mode */
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-bg-dark;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-f1-orange/60 rounded-full;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-f1-orange;
+  }
+}
+
+@layer components {
+  /* Colored card backgrounds */
+  .card-warm {
+    @apply bg-gradient-to-br from-rose-50 to-white dark:from-rose-950/20 dark:to-[#0A0A0A];
+  }
+  
+  .card-cool {
+    @apply bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-[#0A0A0A];
+  }
+  
+  .card-accent {
+    @apply bg-gradient-to-br from-amber-50 to-white dark:from-amber-950/20 dark:to-[#0A0A0A];
+  }
+
+  /* Section backgrounds with subtle gradients */
+  .section-gradient-warm {
+    background: 
+      radial-gradient(ellipse at top right, rgba(225, 6, 0, 0.04), transparent 60%),
+      linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
+  }
+
+  .dark .section-gradient-warm {
+    background: 
+      radial-gradient(ellipse at top right, rgba(225, 6, 0, 0.1), transparent 60%),
+      linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+  }
+
+  .section-gradient-cool {
+    background: 
+      radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.04), transparent 60%),
+      linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
+  }
+
+  .dark .section-gradient-cool {
+    background: 
+      radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.08), transparent 60%),
+      linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
   }
 }
 

@@ -84,7 +84,7 @@ export function Header() {
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'backdrop-blur-xl bg-white/80 dark:bg-black/80 border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm' 
+          ? 'backdrop-blur-xl bg-gradient-to-r from-white/90 via-white/80 to-white/90 dark:from-black/90 dark:via-[#0a0a0f]/80 dark:to-black/90 border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm' 
           : 'backdrop-blur-md bg-white/50 dark:bg-black/50 border-b border-transparent'
       }`}
       variants={prefersReducedMotion ? undefined : headerVariants}

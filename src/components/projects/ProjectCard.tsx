@@ -30,6 +30,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
     tools: 'Tools',
   };
 
+  const categoryGradients = {
+    ml: 'from-rose-50/50 via-white to-white dark:from-rose-950/20 dark:via-[#0A0A0A] dark:to-[#0A0A0A]',
+    nlp: 'from-indigo-50/50 via-white to-white dark:from-indigo-950/20 dark:via-[#0A0A0A] dark:to-[#0A0A0A]',
+    quant: 'from-amber-50/50 via-white to-white dark:from-amber-950/20 dark:via-[#0A0A0A] dark:to-[#0A0A0A]',
+    tools: 'from-blue-50/50 via-white to-white dark:from-blue-950/20 dark:via-[#0A0A0A] dark:to-[#0A0A0A]',
+  };
+
   // 3D Tilt effect handler
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current || prefersReducedMotion) return;
@@ -83,7 +90,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     >
       <Link
         to={routes.projectDetail(project.id)}
-        className="group relative block w-full h-full min-h-[400px] overflow-hidden bg-white dark:bg-[#0A0A0A] border-l-2 border-gray-200 dark:border-gray-800 hover:border-f1-red dark:hover:border-f1-orange transition-all duration-500 rounded-lg shadow-lg hover:shadow-2xl"
+        className={`group relative block w-full h-full min-h-[400px] overflow-hidden bg-gradient-to-br ${categoryGradients[project.category]} border-l-2 border-gray-200 dark:border-gray-800 hover:border-f1-red dark:hover:border-f1-orange transition-all duration-500 rounded-lg shadow-lg hover:shadow-2xl`}
       >
         {/* Shine effect on hover */}
         <motion.div 
@@ -102,15 +109,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </TireCompound>
         </div>
 
-        <div className="flex flex-col h-full justify-between p-8 relative z-10">
-          <div className="mt-8">
+        <div className="flex flex-col h-full justify-between p-6 md:p-8 relative z-10">
+          <div className="mt-6 md:mt-8 pr-16">
             <span className="text-xs font-mono text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2 block">
               {project.period}
             </span>
-            <h3 className="text-4xl md:text-5xl font-racing font-bold text-gray-900 dark:text-white group-hover:text-f1-red dark:group-hover:text-f1-orange transition-colors leading-none mb-6">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-racing font-bold text-gray-900 dark:text-white group-hover:text-f1-red dark:group-hover:text-f1-orange transition-colors leading-tight mb-4 break-words hyphens-auto">
               {project.title}
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md line-clamp-3 group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors">
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 line-clamp-3 group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors">
               {project.description}
             </p>
           </div>

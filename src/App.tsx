@@ -39,7 +39,7 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-bg-light dark:bg-bg-dark">
+        <div className="min-h-screen page-gradient">
           <LoadingScreen minDuration={1800} />
           <CustomCursor />
           <ProgressBar />

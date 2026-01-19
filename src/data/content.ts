@@ -5,7 +5,7 @@ export const content: Content = {
     name: 'Muneeb Azfar Nafees',
     location: 'Waterville, ME',
     origin: 'originally Karachi',
-    headline: 'Computer Science (AI) + Mathematical Science student building AI/ML systems and quant tools',
+    headline: 'Engineering intelligent systems — from data to deployment.',
     bio: 'I build things that should exist. Currently studying Computer Science with a concentration in AI and Mathematical Science at Colby College. Passionate about leveraging technology and data to solve real-world problems. Building AI/ML systems, quant tools, and shipping products.',
     links: {
       email: 'mailto:manafe28@colby.edu',

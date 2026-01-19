@@ -12,6 +12,12 @@ export function PitStopCard({ experience, className = '' }: PitStopCardProps) {
     other: 'border-gray-400',
   };
 
+  const typeBgColors = {
+    research: 'from-emerald-50 via-white to-white dark:from-emerald-950/20 dark:via-gray-900 dark:to-gray-900',
+    internship: 'from-amber-50 via-white to-white dark:from-amber-950/20 dark:via-gray-900 dark:to-gray-900',
+    other: 'from-gray-50 via-white to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900',
+  };
+
   const typeLabels = {
     research: 'Research',
     internship: 'Internship',
@@ -20,7 +26,7 @@ export function PitStopCard({ experience, className = '' }: PitStopCardProps) {
 
   return (
     <div
-      className={`bg-white dark:bg-gray-900 border-l-4 ${typeColors[experience.type]} rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow ${className}`}
+      className={`bg-gradient-to-r ${typeBgColors[experience.type]} border-l-4 ${typeColors[experience.type]} rounded-lg p-6 shadow-lg hover:shadow-xl transition-all hover:translate-x-1 ${className}`}
     >
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
         <div>
@@ -45,7 +51,7 @@ export function PitStopCard({ experience, className = '' }: PitStopCardProps) {
       </div>
 
       {experience.impact && (
-        <div className="mb-3 p-2 bg-f1-gold/10 dark:bg-f1-gold/20 rounded text-xs text-gray-700 dark:text-gray-300">
+        <div className="mb-3 p-2 bg-gradient-to-r from-amber-50 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/20 rounded text-xs text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-amber-800/30">
           <strong>Impact:</strong> {experience.impact}
         </div>
       )}
