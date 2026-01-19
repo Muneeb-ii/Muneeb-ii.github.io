@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
 import { routes } from '../../utils/routing';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { easings } from '../../utils/animations';
 
 const navItems = [
   { label: 'Paddock', path: routes.about, id: 'about' },
@@ -20,7 +21,29 @@ export function Header() {
   const location = useLocation();
   const { isDark, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  const lastScrollY = useRef(0);
+  const { scrollY } = useScroll();
+
+  // Hide header on scroll down, show on scroll up
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const direction = latest > lastScrollY.current ? 'down' : 'up';
+    const threshold = 100;
+    
+    // Only hide if scrolled past threshold and scrolling down
+    if (direction === 'down' && latest > threshold && !mobileMenuOpen) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+    
+    // Add background blur intensity when scrolled
+    setIsScrolled(latest > 20);
+    
+    lastScrollY.current = latest;
+  });
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -40,43 +63,83 @@ export function Header() {
 
   const mobileMenuVariants = {
     closed: {
-      opacity: prefersReducedMotion ? 0 : 0,
-      height: prefersReducedMotion ? 0 : 0,
-      transition: { duration: prefersReducedMotion ? 0 : 0.2 },
+      opacity: 0,
+      height: 0,
+      transition: { duration: prefersReducedMotion ? 0 : 0.3, ease: easings.smooth },
     },
     open: {
       opacity: 1,
       height: 'auto',
-      transition: { duration: prefersReducedMotion ? 0 : 0.2 },
+      transition: { duration: prefersReducedMotion ? 0 : 0.3, ease: easings.smooth },
+    },
+  };
+
+  const headerVariants = {
+    visible: { 
+      y: 0,
+      transition: { duration: 0.3, ease: easings.smooth },
+    },
+    hidden: { 
+      y: '-100%',
+      transition: { duration: 0.3, ease: easings.smooth },
     },
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/50 dark:bg-black/50 border-b border-gray-200/50 dark:border-gray-800/50 transition-all duration-300">
+    <motion.header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'backdrop-blur-xl bg-white/80 dark:bg-black/80 border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm' 
+          : 'backdrop-blur-md bg-white/50 dark:bg-black/50 border-b border-transparent'
+      }`}
+      variants={prefersReducedMotion ? undefined : headerVariants}
+      animate={isHidden ? 'hidden' : 'visible'}
+      initial="visible"
+    >
       <nav className="w-full px-6 md:px-12 py-4">
         <div className="flex items-center justify-between">
           <Link
             to={routes.home}
-            className="font-racing text-2xl font-bold tracking-tighter text-gray-900 dark:text-white hover:text-f1-red dark:hover:text-f1-orange transition-colors"
+            className="group font-racing text-2xl font-bold tracking-tighter text-gray-900 dark:text-white hover:text-f1-red dark:hover:text-f1-orange transition-colors"
+            data-cursor="pointer"
           >
-            MN <span className="hidden sm:inline text-f1-red dark:text-f1-orange">.</span>
+            <motion.span 
+              className="inline-block"
+              whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: -3 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
+              MN
+            </motion.span>
+            <span className="hidden sm:inline text-f1-red dark:text-f1-orange">.</span>
           </Link>
 
           <div className="flex items-center space-x-8">
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link
                     key={item.id}
                     to={item.path}
-                    className={`relative text-sm font-medium tracking-wide uppercase transition-colors group ${isActive
+                    className={`relative text-xs lg:text-sm font-medium tracking-wide uppercase transition-colors group py-1 ${isActive
                       ? 'text-f1-red dark:text-f1-orange'
                       : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
                       }`}
+                    data-cursor="pointer"
                   >
                     {item.label}
-                    <span className={`absolute -bottom-1 left-0 h-px bg-f1-red dark:bg-f1-orange transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                    {/* Active indicator with layout animation */}
+                    {isActive && (
+                      <motion.span 
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-f1-red dark:bg-f1-orange rounded-full"
+                        layoutId="activeNav"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    {/* Hover indicator */}
+                    {!isActive && (
+                      <span className="absolute -bottom-1 left-0 h-px bg-gray-400 dark:bg-gray-600 transition-all duration-300 w-0 group-hover:w-full" />
+                    )}
                   </Link>
                 );
               })}
@@ -155,6 +218,6 @@ export function Header() {
           )}
         </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 }
