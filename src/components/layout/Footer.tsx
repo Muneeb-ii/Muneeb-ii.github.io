@@ -37,9 +37,24 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center">
           <ScrollReveal direction="up">
-            <p className="text-2xl md:text-3xl font-racing mb-8 text-white">
+            <p className="text-2xl md:text-3xl font-racing mb-4 text-white">
               Let's Build Something
             </p>
+            <a 
+              href={content.personalInfo.links.email}
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-f1-orange transition-colors mb-8 group"
+              data-cursor="pointer"
+            >
+              <svg 
+                className="w-4 h-4 transition-transform group-hover:scale-110" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span className="font-mono text-sm">manafe28@colby.edu</span>
+            </a>
           </ScrollReveal>
 
           <StaggerContainer staggerSpeed="slow" className="flex justify-center space-x-8 mb-10">

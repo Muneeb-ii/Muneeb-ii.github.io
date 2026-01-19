@@ -1,6 +1,7 @@
 import { Section } from '../components/shared/Section';
 import { SEO } from '../components/shared/SEO';
 import { PitStopCard } from '../components/f1/PitStopCard';
+import { Button } from '../components/shared/Button';
 import { content } from '../data/content';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '../components/shared/ScrollReveal';
 
@@ -30,12 +31,31 @@ export function Experience() {
         <Section className="pt-20 relative">
           <ScrollReveal direction="up">
             <div className="mb-12">
-              <h1 className="text-5xl md:text-6xl font-racing font-bold mb-4 text-gray-900 dark:text-white">
-                Pit Wall
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-400">
-                Experience and decisions. Where I've been, what I've built.
-              </p>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div>
+                  <h1 className="text-5xl md:text-6xl font-racing font-bold mb-4 text-gray-900 dark:text-white">
+                    Pit Wall
+                  </h1>
+                  <p className="text-xl text-gray-600 dark:text-gray-400">
+                    Experience and decisions. Where I've been, what I've built.
+                  </p>
+                </div>
+                <Button
+                  href="/assets/documents/Resume.pdf"
+                  variant="primary"
+                  className="group shrink-0"
+                >
+                  <svg 
+                    className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Resume
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
 
