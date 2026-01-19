@@ -60,6 +60,7 @@ export interface Skill {
 
 export interface Achievement {
   title: string;
+  institution: string;
   period: string;
   description: string;
   category: 'academic' | 'competition' | 'leadership' | 'other';

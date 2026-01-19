@@ -16,13 +16,6 @@ export function About() {
     type: 'education' as const,
   }));
 
-  // Group achievements by category
-  const achievementsByCategory = {
-    academic: content.achievements.filter((a) => a.category === 'academic'),
-    leadership: content.achievements.filter((a) => a.category === 'leadership'),
-    competition: content.achievements.filter((a) => a.category === 'competition'),
-  };
-
   return (
     <>
       <SEO
@@ -126,95 +119,34 @@ export function About() {
               </h2>
             </ScrollReveal>
 
-            {/* Academic Excellence */}
-            {achievementsByCategory.academic.length > 0 && (
-              <div className="mb-10">
-                <ScrollReveal direction="left">
-                  <h3 className="text-xl font-racing font-bold mb-4 text-f1-red dark:text-f1-orange uppercase tracking-wide">
-                    Academic Excellence
-                  </h3>
-                </ScrollReveal>
-                <StaggerContainer staggerSpeed="fast" className="space-y-3">
-                  {achievementsByCategory.academic.map((achievement, idx) => (
-                    <StaggerItem key={idx} direction="up">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-telemetry-green p-4 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 rounded-r-lg">
-                        <div>
-                          <h4 className="font-bold text-gray-900 dark:text-white">
-                            {achievement.title}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {achievement.description}
-                          </p>
-                        </div>
-                        <span className="mt-2 sm:mt-0 text-xs font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap">
-                          {achievement.period}
+            {/* All achievements in a single list with new format */}
+            <StaggerContainer staggerSpeed="fast" className="space-y-4">
+              {content.achievements.map((achievement, idx) => (
+                <StaggerItem key={idx} direction="up">
+                  <div className="bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-red dark:hover:border-f1-orange p-5 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 rounded-r-lg">
+                    {/* Header row: Title | Institution ... Period */}
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h4 className="font-racing font-bold text-lg text-gray-900 dark:text-white">
+                          {achievement.title}
+                        </h4>
+                        <span className="text-gray-400 dark:text-gray-600 hidden sm:inline">|</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                          {achievement.institution}
                         </span>
                       </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              </div>
-            )}
-
-            {/* Leadership */}
-            {achievementsByCategory.leadership.length > 0 && (
-              <div className="mb-10">
-                <ScrollReveal direction="left">
-                  <h3 className="text-xl font-racing font-bold mb-4 text-f1-red dark:text-f1-orange uppercase tracking-wide">
-                    Leadership
-                  </h3>
-                </ScrollReveal>
-                <StaggerContainer staggerSpeed="fast" className="space-y-3">
-                  {achievementsByCategory.leadership.map((achievement, idx) => (
-                    <StaggerItem key={idx} direction="up">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-telemetry-yellow p-4 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 rounded-r-lg">
-                        <div>
-                          <h4 className="font-bold text-gray-900 dark:text-white">
-                            {achievement.title}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {achievement.description}
-                          </p>
-                        </div>
-                        <span className="mt-2 sm:mt-0 text-xs font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap">
-                          {achievement.period}
-                        </span>
-                      </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              </div>
-            )}
-
-            {/* Competitions */}
-            {achievementsByCategory.competition.length > 0 && (
-              <div className="mb-10">
-                <ScrollReveal direction="left">
-                  <h3 className="text-xl font-racing font-bold mb-4 text-f1-red dark:text-f1-orange uppercase tracking-wide">
-                    Competitions
-                  </h3>
-                </ScrollReveal>
-                <StaggerContainer staggerSpeed="fast" className="space-y-3">
-                  {achievementsByCategory.competition.map((achievement, idx) => (
-                    <StaggerItem key={idx} direction="up">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white dark:bg-[#0A0A0A] border-l-2 border-transparent hover:border-f1-gold p-4 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 rounded-r-lg">
-                        <div>
-                          <h4 className="font-bold text-gray-900 dark:text-white">
-                            {achievement.title}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {achievement.description}
-                          </p>
-                        </div>
-                        <span className="mt-2 sm:mt-0 text-xs font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap">
-                          {achievement.period}
-                        </span>
-                      </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              </div>
-            )}
+                      <span className="text-xs font-mono text-gray-500 uppercase tracking-widest whitespace-nowrap shrink-0">
+                        {achievement.period}
+                      </span>
+                    </div>
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {achievement.description}
+                    </p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
           </div>
         </div>
       </Section>
