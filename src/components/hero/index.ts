@@ -3,3 +3,4 @@ export { HUDBrackets } from './HUDBrackets';
 export { FloatingStats } from './FloatingStats';
 export { MouseSpotlight } from './MouseSpotlight';
 export { StatusTicker } from './StatusTicker';
+export { Hero } from './Hero';
