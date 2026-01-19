@@ -116,7 +116,7 @@ export function Hero() {
                         {/* MUNEEB */}
                         <div className="overflow-hidden">
                             <motion.h1
-                                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-400 dark:to-gray-600"
+                                className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-400 dark:to-gray-600"
                                 initial={{ y: 100, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{
@@ -132,7 +132,7 @@ export function Hero() {
                         {/* NAFEES */}
                         <div className="overflow-hidden">
                             <motion.h1
-                                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter text-gray-900 dark:text-white -mt-2 md:-mt-4"
+                                className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-racing font-bold tracking-tighter text-gray-900 dark:text-white -mt-2 md:-mt-4"
                                 initial={{ y: 100, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{

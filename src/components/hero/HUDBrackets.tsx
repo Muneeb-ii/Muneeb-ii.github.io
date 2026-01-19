@@ -10,12 +10,12 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const bracketVariants = {
-    initial: { 
-      opacity: 0, 
+    initial: {
+      opacity: 0,
       scale: 1.5,
     },
-    animate: { 
-      opacity: 1, 
+    animate: {
+      opacity: 1,
       scale: 1,
       transition: {
         duration: durations.slow,
@@ -33,7 +33,7 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
     },
   };
 
-  const bracketStyle = "w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-f1-red dark:border-f1-orange";
+  const bracketStyle = "hidden sm:block sm:w-16 sm:h-16 md:w-24 md:h-24 border-f1-red dark:border-f1-orange";
 
   return (
     <div className={`absolute inset-0 pointer-events-none z-10 ${className}`}>
