@@ -156,6 +156,84 @@
   }
 }
 
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS FOR SMOOTH ANIMATIONS
+   ======================================== */
+
+/* Force GPU acceleration for animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize motion elements - Framer Motion uses these classes */
+[style*="transform"] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+[style*="opacity"] {
+  will-change: opacity;
+}
+
+/* Optimize frequently animated elements */
+motion, 
+[data-framer-component-type] {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Contain layout for performance - prevents reflows */
+section {
+  contain: layout style;
+}
+
+/* Optimize images for smooth loading */
+img {
+  content-visibility: auto;
+}
+
+/* Prevent layout shift during animations */
+.overflow-hidden {
+  contain: paint;
+}
+
+/* Hardware acceleration for fixed elements */
+header,
+footer,
+[class*="fixed"] {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimize blur effects (expensive on mobile) */
+@media (pointer: coarse) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .blur-3xl {
+    filter: blur(48px);
+  }
+}
+
+/* Reduce animation complexity on low-power devices */
+@media (prefers-reduced-motion: no-preference) and (hover: none) {
+  /* Slightly reduce parallax intensity on touch devices */
+  .parallax-element {
+    --parallax-factor: 0.5;
+  }
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

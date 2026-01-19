@@ -1,6 +1,11 @@
 /**
  * Premium animation utilities and easing curves
  * Inspired by high-end portfolio sites like landonorris.com
+ * 
+ * Performance Notes:
+ * - All animations use transform/opacity (GPU-accelerated)
+ * - Spring animations use optimized stiffness/damping for 60fps
+ * - Mobile devices automatically get simplified animations via useReducedMotion
  */
 
 // Premium easing curves for luxury feel
@@ -186,4 +191,56 @@ export const lerp = (start: number, end: number, factor: number): number => {
 // Get distance between two points
 export const getDistance = (x1: number, y1: number, x2: number, y2: number): number => {
   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+};
+
+// ========================================
+// PERFORMANCE-OPTIMIZED SPRING CONFIGS
+// ========================================
+
+// Smooth spring - good balance of speed and smoothness (60fps optimized)
+export const smoothSpring = {
+  type: 'spring' as const,
+  stiffness: 300,
+  damping: 30,
+  mass: 1,
+};
+
+// Snappy spring - quick response, minimal overshoot
+export const snappySpring = {
+  type: 'spring' as const,
+  stiffness: 400,
+  damping: 35,
+  mass: 0.8,
+};
+
+// Gentle spring - for subtle, elegant movements
+export const gentleSpring = {
+  type: 'spring' as const,
+  stiffness: 200,
+  damping: 25,
+  mass: 1,
+};
+
+// Mobile-optimized spring - less bouncy, more efficient
+export const mobileSpring = {
+  type: 'spring' as const,
+  stiffness: 350,
+  damping: 40,
+  mass: 0.9,
+};
+
+// Check if device is likely low-powered (touch device with small screen)
+export const isLowPowerDevice = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  const isSmallScreen = window.innerWidth < 768;
+  const hasReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  return (isTouchDevice && isSmallScreen) || hasReducedMotion;
+};
+
+// Get appropriate spring config based on device
+export const getOptimizedSpring = () => {
+  return isLowPowerDevice() ? mobileSpring : smoothSpring;
 };
