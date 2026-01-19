@@ -63,7 +63,7 @@ export function Home() {
                     title="Primary Systems"
                     value="Python • ML • Systems"
                     status="good"
-                    className="transform translate-x-4"
+                    className="md:translate-x-4"
                   />
                 </StaggerItem>
                 <StaggerItem direction="left">
@@ -71,7 +71,7 @@ export function Home() {
                     title="Racecraft"
                     value="Shipping • Iteration"
                     status="good"
-                    className="transform -translate-x-4"
+                    className="md:-translate-x-4"
                   />
                 </StaggerItem>
                 <StaggerItem direction="right">
@@ -79,7 +79,7 @@ export function Home() {
                     title="Current Status"
                     value="Building & Scaling"
                     status="good"
-                    className="transform translate-x-8"
+                    className="md:translate-x-8"
                   />
                 </StaggerItem>
               </StaggerContainer>

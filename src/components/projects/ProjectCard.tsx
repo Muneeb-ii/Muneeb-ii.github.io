@@ -90,7 +90,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     >
       <Link
         to={routes.projectDetail(project.id)}
-        className={`group relative block w-full h-full min-h-[400px] overflow-hidden bg-gradient-to-br ${categoryGradients[project.category]} border-l-2 border-gray-200 dark:border-gray-800 hover:border-f1-red dark:hover:border-f1-orange transition-all duration-500 rounded-lg shadow-lg hover:shadow-2xl`}
+        className={`group relative block w-full h-full min-h-[320px] sm:min-h-[360px] md:min-h-[400px] overflow-hidden bg-gradient-to-br ${categoryGradients[project.category]} border-l-2 border-gray-200 dark:border-gray-800 hover:border-f1-red dark:hover:border-f1-orange transition-all duration-500 rounded-lg shadow-lg hover:shadow-2xl`}
       >
         {/* Shine effect on hover */}
         <motion.div 

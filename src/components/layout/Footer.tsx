@@ -57,7 +57,7 @@ export function Footer() {
             </a>
           </ScrollReveal>
 
-          <StaggerContainer staggerSpeed="slow" className="flex justify-center space-x-8 mb-10">
+          <StaggerContainer staggerSpeed="slow" className="flex justify-center space-x-6 sm:space-x-8 mb-10">
             {socialLinks.map((link, idx) => (
               <StaggerItem key={idx} direction="up">
                 <MagneticIcon

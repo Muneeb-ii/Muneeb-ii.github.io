@@ -33,13 +33,13 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
     },
   };
 
-  const bracketStyle = "w-16 h-16 md:w-24 md:h-24 border-f1-red dark:border-f1-orange";
+  const bracketStyle = "w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-f1-red dark:border-f1-orange";
 
   return (
     <div className={`absolute inset-0 pointer-events-none z-10 ${className}`}>
       {/* Top Left Bracket */}
       <motion.div
-        className={`absolute top-8 left-8 ${bracketStyle} border-l-2 border-t-2`}
+        className={`absolute top-4 left-4 sm:top-8 sm:left-8 ${bracketStyle} border-l-2 border-t-2`}
         variants={prefersReducedMotion ? undefined : bracketVariants}
         initial="initial"
         animate="animate"
@@ -49,7 +49,7 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
 
       {/* Top Right Bracket */}
       <motion.div
-        className={`absolute top-8 right-8 ${bracketStyle} border-r-2 border-t-2`}
+        className={`absolute top-4 right-4 sm:top-8 sm:right-8 ${bracketStyle} border-r-2 border-t-2`}
         variants={prefersReducedMotion ? undefined : bracketVariants}
         initial="initial"
         animate="animate"
@@ -60,7 +60,7 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
 
       {/* Bottom Left Bracket */}
       <motion.div
-        className={`absolute bottom-8 left-8 ${bracketStyle} border-l-2 border-b-2`}
+        className={`absolute bottom-4 left-4 sm:bottom-8 sm:left-8 ${bracketStyle} border-l-2 border-b-2`}
         variants={prefersReducedMotion ? undefined : bracketVariants}
         initial="initial"
         animate="animate"
@@ -71,7 +71,7 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
 
       {/* Bottom Right Bracket */}
       <motion.div
-        className={`absolute bottom-8 right-8 ${bracketStyle} border-r-2 border-b-2`}
+        className={`absolute bottom-4 right-4 sm:bottom-8 sm:right-8 ${bracketStyle} border-r-2 border-b-2`}
         variants={prefersReducedMotion ? undefined : bracketVariants}
         initial="initial"
         animate="animate"
@@ -80,16 +80,16 @@ export function HUDBrackets({ className = '' }: HUDBracketsProps) {
         transition={{ delay: 0.2 }}
       />
 
-      {/* Center crosshair elements */}
+      {/* Center crosshair elements - hidden on mobile */}
       <motion.div
-        className="absolute top-1/2 left-8 w-8 h-px bg-f1-red/30 dark:bg-f1-orange/30"
+        className="hidden sm:block absolute top-1/2 left-4 sm:left-8 w-6 sm:w-8 h-px bg-f1-red/30 dark:bg-f1-orange/30"
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
         transition={{ delay: 0.5, duration: durations.slow }}
         style={{ originX: 0 }}
       />
       <motion.div
-        className="absolute top-1/2 right-8 w-8 h-px bg-f1-red/30 dark:bg-f1-orange/30"
+        className="hidden sm:block absolute top-1/2 right-4 sm:right-8 w-6 sm:w-8 h-px bg-f1-red/30 dark:bg-f1-orange/30"
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
         transition={{ delay: 0.5, duration: durations.slow }}

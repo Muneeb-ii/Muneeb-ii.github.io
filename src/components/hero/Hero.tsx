@@ -61,7 +61,7 @@ export function Hero() {
     return (
         <Section
             fullWidth
-            className="h-screen min-h-[800px] relative flex items-center p-0 bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200 dark:from-[#0a0a0f] dark:via-[#0f0a1a] dark:to-[#0a0f1a]"
+            className="h-screen min-h-[600px] md:min-h-[800px] relative flex items-center p-0 bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200 dark:from-[#0a0a0f] dark:via-[#0f0a1a] dark:to-[#0a0f1a]"
             ref={heroRef}
         >
             {/* Cinematic gradient mesh background */}
