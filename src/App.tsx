@@ -1,8 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { AnimatePresence } from 'framer-motion';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { ProgressBar } from './components/layout/ProgressBar';
+import { PageTransition } from './components/layout/PageTransition';
+import { LoadingScreen } from './components/layout/LoadingScreen';
+import { CustomCursor } from './components/shared/CustomCursor';
 import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { ProjectDetailPage } from './pages/ProjectDetail';
@@ -16,30 +20,42 @@ import { Achievements } from './pages/Achievements';
 import { NotFound } from './pages/NotFound';
 import { routes } from './utils/routing';
 
+function AnimatedRoutes() {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path={routes.home} element={<PageTransition><Home /></PageTransition>} />
+        <Route path={routes.projects} element={<PageTransition><Projects /></PageTransition>} />
+        <Route
+          path={`${routes.projects}/:id`}
+          element={<PageTransition><ProjectDetailPage /></PageTransition>}
+        />
+        <Route path={routes.experience} element={<PageTransition><Experience /></PageTransition>} />
+        <Route path={routes.research} element={<PageTransition><Research /></PageTransition>} />
+        <Route path={routes.about} element={<PageTransition><About /></PageTransition>} />
+        <Route path={routes.quant} element={<PageTransition><Quant /></PageTransition>} />
+        <Route path={routes.contact} element={<PageTransition><Contact /></PageTransition>} />
+        <Route path={routes.skills} element={<PageTransition><Skills /></PageTransition>} />
+        <Route path={routes.achievements} element={<PageTransition><Achievements /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark">
+          <LoadingScreen minDuration={1800} />
+          <CustomCursor />
           <ProgressBar />
           <Header />
           <main>
-            <Routes>
-              <Route path={routes.home} element={<Home />} />
-              <Route path={routes.projects} element={<Projects />} />
-              <Route
-                path={`${routes.projects}/:id`}
-                element={<ProjectDetailPage />}
-              />
-              <Route path={routes.experience} element={<Experience />} />
-              <Route path={routes.research} element={<Research />} />
-              <Route path={routes.about} element={<About />} />
-              <Route path={routes.quant} element={<Quant />} />
-              <Route path={routes.contact} element={<Contact />} />
-              <Route path={routes.skills} element={<Skills />} />
-              <Route path={routes.achievements} element={<Achievements />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <AnimatedRoutes />
           </main>
           <Footer />
         </div>
