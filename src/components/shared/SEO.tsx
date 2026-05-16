@@ -9,7 +9,7 @@ interface SEOProps {
 export function SEO({ title, description, path = '' }: SEOProps) {
   const siteTitle = 'Muneeb Azfar Nafees - Portfolio';
   const siteDescription =
-    'Engineering intelligent systems — from data to deployment. CS (AI) + Mathematical Science at Colby College.';
+    'Trying to stick to a niche for more than 6 months. CS (AI) + Mathematical Science at Colby College.';
   const siteUrl = 'https://muneeb-ii.github.io';
 
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;

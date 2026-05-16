@@ -31,10 +31,10 @@ export function Hero() {
 
     // Status ticker items
     const statusItems = [
-        'CS (AI) + Mathematical Science @ Colby',
-        'Research @ Lyons Art Lab',
-        'Building ML & Quant Systems',
-        'Shipping Products That Work',
+        'CS (AI) + Math @ Colby',
+        'Engineering @ Dartmouth',
+        'Research @ HUMANE Lab',
+        'ML Intern @ Prospector',
     ];
 
     // Floating stats data
@@ -199,7 +199,7 @@ export function Hero() {
                         }}
                     >
                         <p className="text-xl md:text-2xl lg:text-3xl font-story text-gray-700 dark:text-gray-300 max-w-xl leading-relaxed">
-                            Engineering intelligent systems — from data to deployment.
+                            Trying to stick to a niche for more than 6 months
                         </p>
                     </motion.div>
 
@@ -228,10 +228,10 @@ export function Hero() {
                         }}
                     >
                         <Button to={routes.projects} variant="primary" className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
-                            View Projects
+                            What I&apos;ve Built
                         </Button>
                         <Button to={routes.experience} variant="outline" className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
-                            See Experience
+                            Where I&apos;ve Worked
                         </Button>
                     </motion.div>
                 </div>

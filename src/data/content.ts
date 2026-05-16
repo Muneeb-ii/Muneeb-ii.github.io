@@ -5,8 +5,8 @@ export const content: Content = {
     name: 'Muneeb Azfar Nafees',
     location: 'Waterville, ME',
     origin: 'originally Karachi',
-    headline: 'Engineering intelligent systems — from data to deployment.',
-    bio: 'I build things that should exist. Currently studying Computer Science with a concentration in AI and Mathematical Science at Colby College. Passionate about leveraging technology and data to solve real-world problems. Building AI/ML systems, quant tools, and shipping products.',
+    headline: 'Trying to stick to a niche for more than 6 months',
+    bio: 'From Karachi, somehow ended up in the Northeast — still processing that. Studying CS and math at Colby, with a side quest into engineering at Dartmouth. Applied math pulled me toward quant, turns out financial markets are just another system I can model. Right now doing multimodal research, starting a NLP internship this summer, and figuring out the rest as I go.',
     links: {
       email: 'mailto:manafe28@colby.edu',
       linkedin: 'https://www.linkedin.com/in/muneebazfarnafees/',

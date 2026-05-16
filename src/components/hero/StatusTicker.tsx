@@ -47,37 +47,39 @@ export function StatusTicker({ items, interval = 3000, className = '' }: StatusT
   };
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      <span className="text-xs font-mono text-f1-red dark:text-f1-orange uppercase tracking-widest mr-2">
-        CURRENTLY:
-      </span>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          variants={prefersReducedMotion ? undefined : variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          className="inline-block text-sm font-mono text-gray-600 dark:text-gray-400"
-        >
-          {items[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
+    <div className={className}>
+      <div className="relative inline-flex items-center overflow-hidden pb-1">
+        <span className="text-xs font-mono text-f1-red dark:text-f1-orange uppercase tracking-widest mr-2">
+          CURRENTLY:
+        </span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={currentIndex}
+            variants={prefersReducedMotion ? undefined : variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="inline-block text-sm font-mono text-gray-600 dark:text-gray-400"
+          >
+            {items[currentIndex]}
+          </motion.span>
+        </AnimatePresence>
 
-      {/* Progress bar */}
-      {!prefersReducedMotion && items.length > 1 && (
-        <motion.div
-          className="absolute bottom-0 left-0 h-px bg-f1-red/50 dark:bg-f1-orange/50"
-          initial={{ width: '0%' }}
-          animate={{ width: '100%' }}
-          transition={{
-            duration: interval / 1000,
-            ease: 'linear',
-            repeat: Infinity,
-          }}
-          key={currentIndex}
-        />
-      )}
+        {/* Progress bar */}
+        {!prefersReducedMotion && items.length > 1 && (
+          <motion.div
+            className="absolute bottom-0 left-0 h-px bg-f1-red/50 dark:bg-f1-orange/50"
+            initial={{ width: '0%' }}
+            animate={{ width: '100%' }}
+            transition={{
+              duration: interval / 1000,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+            key={currentIndex}
+          />
+        )}
+      </div>
     </div>
   );
 }
